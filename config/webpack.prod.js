@@ -18,6 +18,8 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const AotPlugin = require('@ngtools/webpack').AotPlugin;
+
 /**
  * Webpack Constants
  */
@@ -89,6 +91,10 @@ module.exports = function (env) {
      */
     plugins: [
 
+      // new AotPlugin({
+      //   tsConfigPath: './tsconfig.json'
+      // }),
+
       /**
        * Plugin: WebpackMd5Hash
        * Description: Plugin to replace a standard webpack chunkhash with md5.
@@ -151,12 +157,12 @@ module.exports = function (env) {
         // comments: true, //debug
 
 
-        beautify: false, //prod
+        beautify: true, //prod
         output: {
-          comments: false
+          comments: true
         }, //prod
         mangle: {
-          screw_ie8: true
+          screw_ie8: false
         }, //prod
         compress: {
           screw_ie8: true,

@@ -35,9 +35,9 @@ export class DetailComponent {
 
     return new Promise((resolve) => {
       System.import('./more-details')
-        .then((modules) => modules.default)
-        .then((sectionToolsModule) => {
-          return this.compiler.compileModuleAndAllComponentsAsync(sectionToolsModule);
+        .then((modules) => modules.MoreDetailsModule)
+        .then((moreDetailsModule) => {
+          return this.compiler.compileModuleAndAllComponentsAsync(moreDetailsModule);
         }).then((moduleWithFactories) => {
 
         const factory = moduleWithFactories.componentFactories.find(
@@ -51,5 +51,4 @@ export class DetailComponent {
       });
     });
   }
-
 }

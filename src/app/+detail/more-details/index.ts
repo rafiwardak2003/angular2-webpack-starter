@@ -17,4 +17,4 @@ console.log('`Detail` bundle loaded asynchronously');
     SharedModule
   ]
 })
-export default class MoreDetailsModule {}
+export class MoreDetailsModule {}

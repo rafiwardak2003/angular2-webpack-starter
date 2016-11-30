@@ -36,5 +36,11 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": { "rewriteTsconfig": false },
+
+  // this part is used for pre-compile
+  "angularCompilerOptions": {
+    "entryModule": "src/app/app.module#AppModule",
+    "skipMetadataEmit" : true
+  }
 }
