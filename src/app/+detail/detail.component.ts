@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Compiler, ViewContainerRef } from '@angular/core';
 /*
  * We're loading this component asynchronously
  * We are using some magic with es6-promise-loader that will wrap the module with a Promise
@@ -12,15 +12,44 @@ console.log('`Detail` component loaded asynchronously');
   template: `
     <h1>Hello from Detail</h1>
     <router-outlet></router-outlet>
+    
+    <template #moreDetailsContainer></template>
   `
 })
 export class DetailComponent {
-  constructor() {
+  @ViewChild('moreDetailsContainer', { read: ViewContainerRef }) moreDetailsContainer: ViewContainerRef;
 
-  }
+  constructor(public compiler: Compiler) { }
 
   ngOnInit() {
     console.log('hello `Detail` component');
+
+    // Put a two second delay so we can demonstrate that it loads async
+    setTimeout(() => {
+      this.loadMoreDetails();
+    }, 2000);
+  }
+
+  private loadMoreDetails(): Promise<any> {
+    this.moreDetailsContainer.clear();
+
+    return new Promise((resolve) => {
+      System.import('./more-details')
+        .then((modules) => modules.default)
+        .then((sectionToolsModule) => {
+          return this.compiler.compileModuleAndAllComponentsAsync(sectionToolsModule);
+        }).then((moduleWithFactories) => {
+
+        const factory = moduleWithFactories.componentFactories.find(
+          x => x.selector === 'more-details'
+        );
+
+        const component = this.moreDetailsContainer.createComponent(factory).instance;
+        component.detailItems = ['Detail 1', 'Detail 2', 'Detail 3'];
+
+        resolve();
+      });
+    });
   }
 
 }

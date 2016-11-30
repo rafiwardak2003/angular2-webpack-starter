@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { DetailComponent } from './detail.component';
 
@@ -17,8 +17,7 @@ export const routes = [
     DetailComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
+    SharedModule,
     RouterModule.forChild(routes),
   ]
 })

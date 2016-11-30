@@ -6,6 +6,11 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
 /*
+ * Shared
+ */
+import { SharedModule } from './shared/shared.module';
+
+/*
  * Platform and Environment providers/directives/pipes
  */
 import { ENV_PROVIDERS } from './environment';
@@ -45,7 +50,7 @@ type StoreType = {
   ],
   imports: [ // import Angular's modules
     BrowserModule,
-    FormsModule,
+    SharedModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
