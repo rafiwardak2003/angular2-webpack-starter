@@ -40,6 +40,7 @@
 
   // this part is used for pre-compile
   "angularCompilerOptions": {
+    "genDir": "aot",
     "entryModule": "src/app/app.module#AppModule",
     "skipMetadataEmit" : true
   }
