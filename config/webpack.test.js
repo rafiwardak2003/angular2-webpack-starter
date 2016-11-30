@@ -102,7 +102,8 @@ module.exports = function (options) {
               // below by DefinePlugin
               removeComments: true
 
-            }
+            },
+            tsconfig: 'config/tsconfig.test.json'
           },
           exclude: [/\.e2e\.ts$/]
         },

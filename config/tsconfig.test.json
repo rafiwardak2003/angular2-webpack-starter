@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "typeRoots": ["../node_modules/@types"],
+    "baseUrl": "../src",
+    "paths": {
+      "SystemJS": ["../src/custom-typings.d.ts"]
+    }
+  }
+}
